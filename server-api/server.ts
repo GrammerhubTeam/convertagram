@@ -19,7 +19,7 @@ app.use(converterRouter); // '/api/v1/converter'
 
 //LANDING PAGE
 app.get("/", function (req, res) {
-	res.send("Hello Grammers & Goats!");
+	res.send("Hello Grammers & Goatish Peeps!");
 });
 
 app.get("/welcome", function (req, res) {
