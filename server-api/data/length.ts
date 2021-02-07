@@ -14,7 +14,7 @@ units["mile"] = {
   base: "m",
   name: "mile",
   type: "length",
-  factor: 3.2808,
+  factor: 0.00062137,
 };
 units["ft"] = {
   unit: "ft",
