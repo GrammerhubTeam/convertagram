@@ -1,12 +1,13 @@
 import express, { Request, Response } from "express";
 import { lengthUnits } from "../data/length";
+import { massUnits } from "../data/mass";
+import { ConverterValue, Units } from "../models/converter.model";
 import { timeUnits } from "../data/time";
-import { ConverterValue } from "../models/converter.model";
 
 /** Route that will be added to the express */
 const router = express.Router();
 const path: string = "/api/v1/converter";
-const units = {...lengthUnits, ...timeUnits};
+const units: Units = {...lengthUnits, ...massUnits, ...timeUnits};
 
 // Define routes
 router.get(path, async (req: Request, res: Response) => {
@@ -17,6 +18,18 @@ router.get(path, async (req: Request, res: Response) => {
 router.get(path + '/:from/:to/:value', (req: Request<ConverterValue>, res: Response) => {
 	
 	const converterValues = req.params;
+	/**
+	 * converterValues = {from: 'm', to: 'cm', value: 245}
+	 * units = { 
+	 * 	m: {...} UnitReference
+	 *  mm: {...}
+	 *  cm: {...}
+	 * }
+	 * units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
+	 * units['m'].factor / units['cm'].factor * 245
+	 * 1 / 0.01 *245
+	 */
+
 	const val = units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
 	//TODO: CHECK ON THE STATUS THINGY
 	res.status(200);
