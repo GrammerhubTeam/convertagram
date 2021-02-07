@@ -13,12 +13,13 @@ app.use(cors());
 //ROUTES
 app.use(exampleRouter); // '/api/v1/example'
 app.use(converterRouter); // '/api/v1/converter'
-// I'm usede to these looking like
+// I'm used to these looking like
+// Testing contribution
 // app.use('/api/v1/', converterRouter)
 
 //LANDING PAGE
 app.get("/", function (req, res) {
-	res.send("Hello Grammers!");
+	res.send("Hello Grammers & Goats!");
 });
 
 app.get("/welcome", function (req, res) {
