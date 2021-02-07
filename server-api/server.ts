@@ -13,6 +13,8 @@ app.use(cors());
 //ROUTES
 app.use(exampleRouter); // '/api/v1/example'
 app.use(converterRouter); // '/api/v1/converter'
+// I'm usede to these looking like
+// app.use('/api/v1/', converterRouter)
 
 //LANDING PAGE
 app.get("/", function (req, res) {
