@@ -29,7 +29,7 @@ router.get(path + '/:from/:to/:value', (req: Request<ConverterValue>, res: Respo
 	 * units['m'].factor / units['cm'].factor * 245
 	 * 1 / 0.01 *245
 	 */
-	const from = units[converterValues.from]
+
 	const val = units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
 	//TODO: CHECK ON THE STATUS THINGY
 	res.status(200);

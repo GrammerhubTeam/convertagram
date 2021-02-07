@@ -17,5 +17,12 @@ units['Gg'] = { unit:'Gg', base: 'kg', name: 'gigagram', type: 'mass', factor: 1
 units['Tg'] = { unit:'Tg', base: 'kg', name: 'teragram', type: 'mass', factor: 1*1000000000 };
 units['Pg'] = { unit:'Pg', base: 'kg', name: 'petagram', type: 'mass', factor: 1*1000000000000 } ;
 
+units['t'] = { unit:'t', base: 'kg', name: 'metric ton', type: 'mass', factor: 1*1000 } ;
+units['lb'] = { unit:'lb', base: 'kg', name: 'pound', type: 'mass', factor: 1*0.45359237 } ;
+units['oz'] = { unit:'oz', base: 'kg', name: 'ounce', type: 'mass', factor: 1*0.45359237/16 } ;
+units['gr'] = { unit:'gr', base: 'kg', name: 'grain', type: 'mass', factor: 1*0.45359237/7000 } ;
+units['ton'] = { unit:'ton', base: 'kg', name: 'ton', type: 'mass', factor: 1*0.45359237*2000 } ;
+
+units['Da'] = { unit:'Da', base: 'kg', name: 'dalton', type: 'mass', factor: 1*1.6605390666050*10**-27 } ;
 
 export { units as massUnits  };
