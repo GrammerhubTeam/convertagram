@@ -1,11 +1,12 @@
 import express, { Request, Response } from "express";
 import { lengthUnits } from "../data/length";
+import { timeUnits } from "../data/time";
 import { ConverterValue } from "../models/converter.model";
 
 /** Route that will be added to the express */
 const router = express.Router();
 const path: string = "/api/v1/converter";
-const units = {...lengthUnits,};
+const units = {...lengthUnits, ...timeUnits};
 
 // Define routes
 router.get(path, async (req: Request, res: Response) => {
