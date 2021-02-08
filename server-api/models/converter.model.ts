@@ -11,6 +11,8 @@ export interface UnitReference {
     base: string;
     type: string;
     factor: number;
+    system?: string;
+    dataSource?: string;
 }
 
 export interface Units {
