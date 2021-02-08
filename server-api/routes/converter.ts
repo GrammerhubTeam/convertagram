@@ -3,11 +3,12 @@ import { lengthUnits } from "../data/length";
 import { massUnits } from "../data/mass";
 import { ConverterValue, Units } from "../models/converter.model";
 import { timeUnits } from "../data/time";
+import { temperatureUnits } from "../data/temperature";
 
 /** Route that will be added to the express */
 const router = express.Router();
 const path: string = "/api/v1/converter";
-const units: Units = {...lengthUnits, ...massUnits, ...timeUnits};
+const units: Units = { ...lengthUnits, ...massUnits, ...timeUnits, ...temperatureUnits };
 
 // Define routes
 router.get(path, async (req: Request, res: Response) => {
