@@ -1,5 +1,5 @@
- 
-export interface ConverterValue{
+
+export interface ConverterValue {
     to: string;
     from: string;
     value: number;

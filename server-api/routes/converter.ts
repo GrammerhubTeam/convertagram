@@ -13,13 +13,12 @@ router.get(path, async (req: Request, res: Response) => {
 });
 
 //http://localhost:3001/api/v1/converter/m/cm/245
-router.get(path + '/:from/:to/:value', (req: Request<ConverterValue>, res: Response) => {
+router.get(path + '/:from/:to/:value', (req: Request<ConverterValue>, res: Response): void => {
 	
 	const converterValues = req.params;
 	const val = units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
 	//TODO: CHECK ON THE STATUS THINGY
-	res.status(200);
-	return res.send(JSON.stringify(val));
+	res.status(200).send(JSON.stringify(val));
 });
 
 
