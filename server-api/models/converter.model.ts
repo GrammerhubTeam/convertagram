@@ -2,7 +2,7 @@
 export interface ConverterValue {
     to: string;
     from: string;
-    value: number;
+    value: number | BigInt;
 }
 
 export interface UnitReference {
@@ -24,5 +24,5 @@ export interface ConverterResponse {
     errors: {
         [x:string]: string
     };
-    status?: number;
+    status: number;
 }
