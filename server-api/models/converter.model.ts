@@ -18,3 +18,11 @@ export interface UnitReference {
 export interface Units {
     [x: string]: UnitReference
 }
+
+export interface ConverterResponse {
+    convertedValue?: number;
+    errors: {
+        [x:string]: string
+    };
+    status?: number;
+}
