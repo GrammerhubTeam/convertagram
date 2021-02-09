@@ -2,19 +2,19 @@ import { Units } from "../models/converter.model";
 
 const units: Units = {};
 
-units["yard"] = {
+units["yd"] = {
   unit: "yd",
   base: "m",
   name: "yard",
   type: "length",
   factor: 1.0936,
 };
-units["mile"] = {
-  unit: "mile",
+units["mi"] = {
+  unit: "mi",
   base: "m",
   name: "mile",
   type: "length",
-  factor: 3.2808,
+  factor: 0.00062137,
 };
 units["ft"] = {
   unit: "ft",
@@ -28,7 +28,7 @@ units["in"] = {
   base: "m",
   name: "inch",
   type: "length",
-  factor: 39.7,
+  factor: 39.370,
 };
 
 units["km"] = {
