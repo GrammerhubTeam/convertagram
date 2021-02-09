@@ -2,7 +2,7 @@
 export interface ConverterValue {
     to: string;
     from: string;
-    value: number;
+    value: number | BigInt;
 }
 
 export interface UnitReference {
@@ -17,4 +17,12 @@ export interface UnitReference {
 
 export interface Units {
     [x: string]: UnitReference
+}
+
+export interface ConverterResponse {
+    convertedValue?: number;
+    errors: {
+        [x:string]: string
+    };
+    status: number;
 }
