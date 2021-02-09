@@ -20,20 +20,19 @@ router.get(path, async (req: Request, res: Response) => {
 router.get(path + '/:from/:to/:value', (req: Request<ConverterValue>, res: Response): void => {
 	
 	const converterValues = req.params;
-	/**
-	 * converterValues = {from: 'm', to: 'cm', value: 245}
-	 * units = { 
-	 * 	m: {...} UnitReference
-	 *  mm: {...}
-	 *  cm: {...}
-	 * }
-	 * units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
-	 * units['m'].factor / units['cm'].factor * 245
-	 * 1 / 0.01 *245
-	 */
+  const from = units[converterValues.from] ?? null;
+  const to = units[converterValues.to] ?? null;
+  const value = converterValues.value;
 
+  if (!from) res.status(400).send(JSON.stringify({message: 'From parameter is not in the converter'}));
+  if (!to) res.status(400).send(JSON.stringify({message: 'To parameter is not in the converter'}));
+  if (typeof value !== 'number') res.status(400).send(JSON.stringify({message: 'Value parameter is not a number'}));
+
+  //TODO: floating point with a limit on digits
+  //TODO: Update after destructuring
 	const val = units[converterValues.from].factor / units[converterValues.to].factor * converterValues.value;
 	//TODO: CHECK ON THE STATUS THINGY
+  //TODO: ADD CATCH with proper status code
 	res.status(200).send(JSON.stringify(val));
 });
 
