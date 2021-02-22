@@ -1,13 +1,13 @@
 # Convertagram!
-1) Instagram
-2) Plus 90's Scientific calculator
+1) Take Instagram
+2) Add a 90's Scientific calculator
 3) ....
-4) PROFIT!!!!
+4) PROFIT$$$
 
 
 ## Setup Guide:
-- Clone the repo (git clone https://github.com/GrammerhubTeam/convertagram.git)
-- Select folder where you want to start your project
-- Open terminal and use the clone command
-- After the project has been cloned, cd into both folders (`cd web-app` & `cd server-api`)  and run `npm install` in your terminal
-- Then start the projects `npm start`
+- Clone the repo ("git clone https://github.com/GrammerhubTeam/convertagram.git")
+- Select the project you'd like to work on (Front end = "web-app", Backend = "server-api")
+- cd into that directory
+- run `npm install` using Termianl or Command line (CMD)
+- To start the project: run `npm start`
