@@ -3,7 +3,7 @@ import { lengthUnits } from "../data/length";
 import { massUnits } from "../data/mass";
 import { ConverterValue, Units, ConverterResponse } from "../models/converter.model";
 import { timeUnits } from "../data/time";
-import { storageUnits } from '../data/storage'
+import { storageUnits } from '../data/storage';
 import { temperatureUnits } from "../data/temperature";
 
 /** Route that will be added to the express */
@@ -16,7 +16,7 @@ router.get(path, async (req: Request, res: Response) => {
 	return res.status(200).send("Got an unit");
 });
 
-//http://localhost:3001/api/v1/converter/m/cm/245
+//http://localhost:3001/api/v1/converter/m/cm/245/3
 router.get(path + '/:from/:to/:value/:round?', (req: Request<ConverterValue>, res: Response): void => {
 
 	const converterValues = req.params;
@@ -24,6 +24,7 @@ router.get(path + '/:from/:to/:value/:round?', (req: Request<ConverterValue>, re
 	const to = units[converterValues.to] ?? null;
 	const value = +converterValues.value;
 	const response: ConverterResponse = { status: 200, errors: {} };
+	let roundValue;
 
 	if (!from) {
 		response.errors['from'] = 'Parameter is not in the converter';
@@ -44,16 +45,40 @@ router.get(path + '/:from/:to/:value/:round?', (req: Request<ConverterValue>, re
 		response.status = 400
 	};
 
-	//TODO: ADD ROUNDING
-	//TODO: floating point with a limit on digits
-	//TODO: Add temperature
-	//TODO: route to get possible units
-	//TODO: Easter eggs
+	if (converterValues.round) {
+		roundValue = Number(converterValues.round)
+		if (isNaN(roundValue)) {
+			response.errors['round'] = 'Round cannot be a string';
+			response.status = 400
+		}
+		else if (converterValues.round < 0) {
+			response.errors['round'] = 'Round cannot be a negative number';
+			response.status = 400
+		}
+		else {
+			roundValue = roundValue > 17 ? 17 : roundValue;
+		}
+	} else {
+		roundValue = 17; // this was the missing piece if there's no value
+	}
 
-	if (response.status !== 400) response.convertedValue = from.factor / to.factor * value;
+	// TODO: Add temperature
+	// TODO: route to get possible units
+	// TODO: Easter eggs
+
+	if (response.status !== 400) response.convertedValue = Number((from.factor / to.factor * value).toFixed(roundValue));
 
 	//TODO: ADD CATCH with proper status code in case of 500 server error
 	res.status(response.status).send(JSON.stringify({ errors: { ...response.errors }, convertedValue: response.convertedValue }));
+});
+
+//start here
+// TODO - Return what units we accept. Units come from the variable "units"
+// return value is: JSON object with all units
+// res.send(JSON.parse())
+// 
+router.get(path + '/units', (req: Request<ConverterValue>, res: Response): void => { 
+	res.status(200).send(JSON.stringify(units));
 });
 
 
