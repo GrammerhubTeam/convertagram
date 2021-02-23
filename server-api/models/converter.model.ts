@@ -3,6 +3,7 @@ export interface ConverterValue {
     to: string;
     from: string;
     value: number | BigInt;
+    round?: number;
 }
 
 export interface UnitReference {
